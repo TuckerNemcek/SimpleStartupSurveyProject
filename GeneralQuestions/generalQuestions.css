@@ -30,26 +30,30 @@
 }
 
 .about-text{
-  align: center;
+  color: #999999;
   line-height: 2;
   margin-left: 80px;
   float: left;
 }
 
-.container{
-  height: 428.33;
-  width: 428.33;
-  float: right;
-  margin:0;
-}
 
 .email{
   margin-left:120px;
   margin-top: 30px;
 }
 
-#button{
+.btn-primary {
   margin-top:30px;
-  border-radius: 20%;
-  margin-left: 600px;
+  background-color: #52caf5;
+  font-size: 100%;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border-radius: 100px;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-primary:hover {
+  color: #FFF;
+  background: rgba(58, 133, 191, 0.75);
+  border: 2px solid rgba(58, 133, 191, 0.75);
 }
