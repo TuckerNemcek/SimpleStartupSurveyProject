@@ -602,26 +602,86 @@ let storedData = JSON.parse(localStorage.getItem('storedData'))
 console.log(storedData)
 
 let workingCapital = ((storedData[16].answer)) - ((storedData[17].answer))
-console.log(workingCapital)
+console.log('working capital is ',workingCapital)
+
+let currentRatio = ((storedData[16].answer)) / ((storedData[17].answer))
+console.log('current ratio is is ',currentRatio)
+
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  displayResults()
+  displayWorkingCapital()
+  displayCurrentRatio()
 })
 
-let displayResults = () => {
+let displayWorkingCapital = () => {
   let p = document.createElement('p')
-if (workingCapital > -8000){
+  if (workingCapital > 50000){
+    let node = document.createTextNode(p1q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (workingCapital <= 50000 && workingCapital >= 10000){
+    let node = document.createTextNode(p1q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
 
-let node = document.createTextNode(p1q1)
-p.appendChild(node)
-appendHere.appendChild(p)
+    else if (workingCapital < 10000 && workingCapital >= 0){
+      let node = document.createTextNode(p1q3)
+      p.appendChild(node)
+      appendHere.appendChild(p)
+  }
 
+  else if (workingCapital < 0 && workingCapital >= -7500){
+    let node = document.createTextNode(p1q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (workingCapital < -7500){
+    let node = document.createTextNode(p1q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else{
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in workingCapital")
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
 }
-else if (workingCapital > -7500 && workingCapital <= 0){
-  let node = document.createTextNode(p1q2)
-  p.appendChild(node)
-  appendHere.appendChild(p)
-}
 
 
+let displayCurrentRatio = () => {
+  let p = document.createElement('p')
+  if (currentRatio > 2.00){
+    let node = document.createTextNode(p2q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (currentRatio <= 2.00 && currentRatio >= 1.50){
+    let node = document.createTextNode(p2q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+
+    else if (currentRatio < 1.50 && currentRatio >= 1.00){
+      let node = document.createTextNode(p2q3)
+      p.appendChild(node)
+      appendHere.appendChild(p)
+  }
+
+  else if (currentRatio < 1.00 && currentRatio >= -0.50){
+    let node = document.createTextNode(p2q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (currentRatio < -7500){
+    let node = document.createTextNode(p2q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else{
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in workingCapital")
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
 }
