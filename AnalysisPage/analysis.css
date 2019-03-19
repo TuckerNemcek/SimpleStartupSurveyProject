@@ -1,0 +1,59 @@
+
+.nav-link{
+  font-family: sans-serif;
+  color: #444444;
+  font-size: 13px;
+  font-weight: 500;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 30px;
+  }
+
+  #logo{
+    height: 80px;
+    width: 166.92px;
+    margin-left: 80px;
+    margin-right: 110px;
+  }
+
+.page-title{
+  color: #52caf5;
+  font-family: "Lato";
+  font-weight: lighter;
+  margin-top: 20px;
+  margin-left: 80px;
+  font-size: 90px;
+}
+
+.about-text{
+  color: #999999;
+  line-height: 2;
+  margin-left: 80px;
+  float: left;
+}
+
+
+.email{
+  margin-left:120px;
+  margin-top: 30px;
+}
+
+.btn-primary {
+  margin-top:30px;
+  background-color: #52caf5;
+  font-size: 100%;
+  letter-spacing: 1px;
+  line-height: 15px;
+  border-radius: 100px;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-primary:hover {
+  color: #FFF;
+  background: rgba(58, 133, 191, 0.75);
+  border: 2px solid rgba(58, 133, 191, 0.75);
+}

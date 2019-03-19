@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             questInputInner= document.createElement('input')
             questInputInner.class='form-control'
             questInputInner.id=questions[i].id
-            p.innerText = `${i + 1}. ` + questions[i].questionContents
+            p.innerText = `${i}. ` + questions[i].questionContents
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)
@@ -44,12 +44,15 @@ storedData = []
 let submitButton = document.getElementById('submitButton')
 submitButton.onclick = function(){
   for (let i = 1; i <= questionArray.length; i++) {
-    storedData.push({ questionID: i , answer: JSON.stringify(document.getElementById(`${i}`).value)})
+    storedData.push({ questionID: i , answer: document.getElementById(`${i}`).value})
   }
   axios.post('http://localhost:3000/client_answers/',storedData)
   .then(function(response){
     console.log(response.data , ' save success')
   })
+  localStorage.storedData = JSON.stringify(storedData);
+  window.location.href = "../AnalysisPage/analysis.html";
+
 }
 
 ////////////////////
