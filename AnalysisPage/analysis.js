@@ -607,10 +607,31 @@ console.log('working capital is ',workingCapital)
 let currentRatio = ((storedData[16].answer)) / ((storedData[17].answer))
 console.log('current ratio is is ',currentRatio)
 
+let totalSales = storedData[9].answer
+console.log('total sales is ',totalSales)
+
+
+let grossMargin = (storedData[9].answer - storedData[11].answer - storedData[12].answer) / storedData[9].answer
+console.log('gross margin is ', grossMargin)
+
+let netIncome = storedData[15].answer
+console.log('net income is ', netIncome)
+
+let netIncomeMargin = storedData[15].answer / storedData[9].answer
+console.log('net income margin is ', netIncomeMargin)
+
+let revenuePerEmployee = storedData[9].answer / storedData[4].answer
+console.log('revenue per employee is ', revenuePerEmployee)
+
 
 document.addEventListener('DOMContentLoaded', ()=>{
   displayWorkingCapital()
   displayCurrentRatio()
+  displayTotalSales()
+  displayGrossMargin()
+  displayNetIncome()
+  displayNetIncomeMargin()
+  displayRevenuePerEmployee()
 })
 
 let displayWorkingCapital = () => {
@@ -633,12 +654,12 @@ let displayWorkingCapital = () => {
   }
 
   else if (workingCapital < 0 && workingCapital >= -7500){
-    let node = document.createTextNode(p1q4)
+    let node = document.createTextNode(p1q2)
     p.appendChild(node)
     appendHere.appendChild(p)
   }
   else if (workingCapital < -7500){
-    let node = document.createTextNode(p1q5)
+    let node = document.createTextNode(p1q1)
     p.appendChild(node)
     appendHere.appendChild(p)
   }
@@ -648,7 +669,7 @@ let displayWorkingCapital = () => {
     appendHere.appendChild(p)
   }
 }
-
+/////////
 
 let displayCurrentRatio = () => {
   let p = document.createElement('p')
@@ -669,19 +690,205 @@ let displayCurrentRatio = () => {
       appendHere.appendChild(p)
   }
 
-  else if (currentRatio < 1.00 && currentRatio >= -0.50){
-    let node = document.createTextNode(p2q4)
+  else if (currentRatio < 1.00 && currentRatio >= 0.50){
+    let node = document.createTextNode(p2q2)
     p.appendChild(node)
     appendHere.appendChild(p)
   }
-  else if (currentRatio < -7500){
-    let node = document.createTextNode(p2q5)
+  else if (currentRatio < 0.50){
+    let node = document.createTextNode(p2q1)
     p.appendChild(node)
     appendHere.appendChild(p)
   }
   else{
-    let node = document.createTextNode("Whoops, looks like we encountered a bug in workingCapital")
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in currentRatio")
     p.appendChild(node)
     appendHere.appendChild(p)
   }
+}
+///////////
+
+let displayTotalSales = () => {
+  let p = document.createElement('p')
+  if (totalSales > 500000){
+    let node = document.createTextNode(p3q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (totalSales <= 500000 && totalSales >= 100000){
+    let node = document.createTextNode(p3q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+
+    else if (totalSales < 100000 && totalSales >= 25000){
+      let node = document.createTextNode(p3q3)
+      p.appendChild(node)
+      appendHere.appendChild(p)
+  }
+
+  else if (totalSales < 25000 && totalSales >= 1000){
+    let node = document.createTextNode(p3q2)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (totalSales < 1000){
+    let node = document.createTextNode(p3q1)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else{
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in totalSales")
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+}
+
+///////////
+
+let displayGrossMargin = () => {
+  let p = document.createElement('p')
+  if (grossMargin > .5){
+    let node = document.createTextNode(p4q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (grossMargin <= .5 && grossMargin >= .25){
+    let node = document.createTextNode(p4q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+
+    else if (grossMargin < .25 && grossMargin >= 0){
+      let node = document.createTextNode(p4q3)
+      p.appendChild(node)
+      appendHere.appendChild(p)
+  }
+
+  else if (grossMargin < 0 && grossMargin >= -.1){
+    let node = document.createTextNode(p4q2)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (grossMargin < -.1){
+    let node = document.createTextNode(p4q1)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else{
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in gross margin")
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+}
+
+ ////////////
+let displayNetIncome = () => {
+  let p = document.createElement('p')
+  if (netIncome > 250000){
+    let node = document.createTextNode(p5q5)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (netIncome <= 250000&& netIncome >= 25000){
+    let node = document.createTextNode(p5q4)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+
+    else if (netIncome < 25000 && netIncome >= 0){
+      let node = document.createTextNode(p5q3)
+      p.appendChild(node)
+      appendHere.appendChild(p)
+  }
+
+  else if (netIncome < 0 && netIncome >= -25000){
+    let node = document.createTextNode(p5q2)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else if (netIncome < -25000){
+    let node = document.createTextNode(p5q1)
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+  else{
+    let node = document.createTextNode("Whoops, looks like we encountered a bug in net income")
+    p.appendChild(node)
+    appendHere.appendChild(p)
+  }
+}
+
+////////////
+let displayNetIncomeMargin = () => {
+ let p = document.createElement('p')
+ if (netIncomeMargin > .3){
+   let node = document.createTextNode(p6q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (netIncomeMargin <= .3 && netIncomeMargin >= .1){
+   let node = document.createTextNode(p6q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (netIncomeMargin < .1 && netIncomeMargin >= 0){
+     let node = document.createTextNode(p6q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (netIncomeMargin < 0 && netIncomeMargin >= -.2){
+   let node = document.createTextNode(p6q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (netIncomeMargin < -.2){
+   let node = document.createTextNode(p6q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in net income margin")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayRevenuePerEmployee = () => {
+ let p = document.createElement('p')
+ if (revenuePerEmployee > 250000){
+   let node = document.createTextNode(p6q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (revenuePerEmployee <= 250000 && revenuePerEmployee >= 50000){
+   let node = document.createTextNode(p6q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (revenuePerEmployee < 50000 && revenuePerEmployee >= 0){
+     let node = document.createTextNode(p6q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (revenuePerEmployee < 0 && revenuePerEmployee >= -.2){
+   let node = document.createTextNode(p6q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (revenuePerEmployee < -.2){
+   let node = document.createTextNode(p6q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in revenue per employee")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
 }
