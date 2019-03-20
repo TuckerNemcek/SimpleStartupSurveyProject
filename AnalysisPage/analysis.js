@@ -610,7 +610,6 @@ console.log('current ratio is is ',currentRatio)
 let totalSales = storedData[9].answer
 console.log('total sales is ',totalSales)
 
-
 let grossMargin = (storedData[9].answer - storedData[11].answer - storedData[12].answer) / storedData[9].answer
 console.log('gross margin is ', grossMargin)
 
@@ -623,6 +622,14 @@ console.log('net income margin is ', netIncomeMargin)
 let revenuePerEmployee = storedData[9].answer / storedData[4].answer
 console.log('revenue per employee is ', revenuePerEmployee)
 
+let revenuePerClient = storedData[9].answer / storedData[5].answer
+console.log('revenue per client/contract is ', revenuePerClient)
+
+let interestCoverage = (storedData[9].answer - storedData[11].answer - storedData[12].answer -storedData[13].answer) / storedData[14].answer
+console.log('interest coeverage is ', interestCoverage)
+
+let inventoryTurnover = storedData[12].answer / storedData[23].answer
+console.log('inventory turnover is', inventoryTurnover)
 
 document.addEventListener('DOMContentLoaded', ()=>{
   displayWorkingCapital()
@@ -632,6 +639,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
   displayNetIncome()
   displayNetIncomeMargin()
   displayRevenuePerEmployee()
+  displayRevenuePerClient()
+  displayInterestCoverage()
+  displayInventoryTurnover()
 })
 
 let displayWorkingCapital = () => {
@@ -860,34 +870,145 @@ let displayNetIncomeMargin = () => {
 let displayRevenuePerEmployee = () => {
  let p = document.createElement('p')
  if (revenuePerEmployee > 250000){
-   let node = document.createTextNode(p6q5)
+   let node = document.createTextNode(p7q5)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
  else if (revenuePerEmployee <= 250000 && revenuePerEmployee >= 50000){
-   let node = document.createTextNode(p6q4)
+   let node = document.createTextNode(p7q4)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
 
-   else if (revenuePerEmployee < 50000 && revenuePerEmployee >= 0){
-     let node = document.createTextNode(p6q3)
+   else if (revenuePerEmployee < 50000 && revenuePerEmployee >= 10000){
+     let node = document.createTextNode(p7q3)
      p.appendChild(node)
      appendHere.appendChild(p)
  }
 
- else if (revenuePerEmployee < 0 && revenuePerEmployee >= -.2){
-   let node = document.createTextNode(p6q2)
+ else if (revenuePerEmployee < 10000 && revenuePerEmployee >= 1000){
+   let node = document.createTextNode(p7q2)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
- else if (revenuePerEmployee < -.2){
-   let node = document.createTextNode(p6q1)
+ else if (revenuePerEmployee < -1000){
+   let node = document.createTextNode(p7q1)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
  else{
    let node = document.createTextNode("Whoops, looks like we encountered a bug in revenue per employee")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayRevenuePerClient = () => {
+ let p = document.createElement('p')
+ if (revenuePerClient > 250000){
+   let node = document.createTextNode(p8q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (revenuePerClient <= 250000 && revenuePerClient >= 50000){
+   let node = document.createTextNode(p8q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (revenuePerClient < 50000 && revenuePerClient >= 10000){
+     let node = document.createTextNode(p8q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (revenuePerClient < 10000 && revenuePerClient >= 1000){
+   let node = document.createTextNode(p8q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (revenuePerClient < -1000){
+   let node = document.createTextNode(p8q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in revenue per client")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayInterestCoverage = () => {
+ let p = document.createElement('p')
+ if (interestCoverage > 3.00){
+   let node = document.createTextNode(p9q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (interestCoverage <= 3.00 && interestCoverage >= 2.00){
+   let node = document.createTextNode(p9q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (interestCoverage < 2.00 && interestCoverage >= 1.50){
+     let node = document.createTextNode(p9q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (interestCoverage < 1.50 && interestCoverage >= 0){
+   let node = document.createTextNode(p9q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (interestCoverage < 0){
+   let node = document.createTextNode(p9q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in interest coverage")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayInventoryTurnover = () => {
+ let p = document.createElement('p')
+ if (inventoryTurnover > 12.00){
+   let node = document.createTextNode(p10q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (inventoryTurnover <= 12.00 && inventoryTurnover >= 6.00){
+   let node = document.createTextNode(p10q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (inventoryTurnover < 6.00 && inventoryTurnover >= 4.00){
+     let node = document.createTextNode(p10q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (inventoryTurnover < 4.00 && inventoryTurnover >= 1.00){
+   let node = document.createTextNode(p10q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (inventoryTurnover < 1.00){
+   let node = document.createTextNode(p10q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in inventory Turnover")
    p.appendChild(node)
    appendHere.appendChild(p)
  }
