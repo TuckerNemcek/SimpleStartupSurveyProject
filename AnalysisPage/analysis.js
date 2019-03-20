@@ -628,8 +628,30 @@ console.log('revenue per client/contract is ', revenuePerClient)
 let interestCoverage = (storedData[9].answer - storedData[11].answer - storedData[12].answer -storedData[13].answer) / storedData[14].answer
 console.log('interest coeverage is ', interestCoverage)
 
-let inventoryTurnover = storedData[12].answer / storedData[23].answer
+let inventoryTurnover = storedData[12].answer / ((storedData[23].answer + storedData[23].answer) / 2)
 console.log('inventory turnover is', inventoryTurnover)
+
+let daysOfInventoryOnHand = 365 / inventoryTurnover
+console.log('days of inventory on hand is', daysOfInventoryOnHand)
+
+let arTurnover = (storedData[9].answer - storedData[10].answer) / ()(storedData[19].answer + storedData[19].answer) / 2)
+console.log('AR turnover is ', arTurnover)
+
+let daysOfSalesOutstanding = 365 / arTurnover
+console.log('days of sales outstanding is ', daysOfSalesOutstanding)
+
+let apTurnover = (storedData[12].answer + storedData[23].answer - storedData[22].answer) / storedData[21].answer
+console.log('your AP turnover is ', apTurnover)
+
+let daysOfPayablesOutstanding = 365 / apTurnover
+console.log('your days of payables outstanding is ', daysOfPayablesOutstanding)
+
+let cashConversionCycle = daysOfInventoryOnHand + daysOfSalesOutstanding - daysOfPayablesOutstanding
+console.log('your cash conversion cycle is ', cashConversionCycle)
+
+let workingCapitalTurover = storedData[9].answer / workingCapital
+console.log('your working capital turnover is ', workingCapitalTurover)
+
 
 document.addEventListener('DOMContentLoaded', ()=>{
   displayWorkingCapital()
@@ -642,9 +664,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
   displayRevenuePerClient()
   displayInterestCoverage()
   displayInventoryTurnover()
+  displayInventoryOnHand()
+  displayARTurnover()
+  displayDaysofSalesOutstanding()
+  displayAPTurnover()
+  displayDaysOfPayablesOutstanding()
+  displayCashConversionCycle()
+  displayworkingCapitalTurnover()
 })
 
 let displayWorkingCapital = () => {
+  let head = document.createElement('h3')
+  let headText = document.createTextNode('Working Capital')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
   let p = document.createElement('p')
   if (workingCapital > 50000){
     let node = document.createTextNode(p1q5)
@@ -682,6 +715,10 @@ let displayWorkingCapital = () => {
 /////////
 
 let displayCurrentRatio = () => {
+  let head = document.createElement('h3')
+  let headText = document.createTextNode('Current Ratio')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
   let p = document.createElement('p')
   if (currentRatio > 2.00){
     let node = document.createTextNode(p2q5)
@@ -1009,6 +1046,266 @@ let displayInventoryTurnover = () => {
  }
  else{
    let node = document.createTextNode("Whoops, looks like we encountered a bug in inventory Turnover")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayInventoryOnHand = () => {
+ let p = document.createElement('p')
+ if (daysOfInventoryOnHand > 60.00){
+   let node = document.createTextNode(p11q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfInventoryOnHand <= 60.00 && daysOfInventoryOnHand >= 30.00){
+   let node = document.createTextNode(p11q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (daysOfInventoryOnHand < 30.00 && daysOfInventoryOnHand >= 7.00){
+     let node = document.createTextNode(p11q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (daysOfInventoryOnHand < 7.00 && daysOfInventoryOnHand >= 1.00){
+   let node = document.createTextNode(p11q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfInventoryOnHand < 1.00){
+   let node = document.createTextNode(p11q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in daysOfInventoryOnHand")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayARTurnover = () => {
+ let p = document.createElement('p')
+ if (arTurnover > 12.00){
+   let node = document.createTextNode(p12q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (arTurnover <= 12.00 && arTurnover >= 4.00){
+   let node = document.createTextNode(p12q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (arTurnover < 4.00 && arTurnover >= 2.00){
+     let node = document.createTextNode(p12q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (arTurnover < 2.00 && arTurnover >= 1.00){
+   let node = document.createTextNode(p12q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (arTurnover < 1.00){
+   let node = document.createTextNode(p12q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in arTurnover")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayDaysofSalesOutstanding = () => {
+ let p = document.createElement('p')
+ if (daysOfSalesOutstanding > 120.00){
+   let node = document.createTextNode(p13q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfSalesOutstanding <= 120.00 && daysOfSalesOutstanding >= 90.00){
+   let node = document.createTextNode(p13q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (daysOfSalesOutstanding < 90.00 && daysOfSalesOutstanding >= 60.00){
+     let node = document.createTextNode(p13q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (daysOfSalesOutstanding < 60.00 && daysOfSalesOutstanding >= 30.00){
+   let node = document.createTextNode(p13q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfSalesOutstanding < 30.00){
+   let node = document.createTextNode(p13q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in daysOfSalesOutstanding")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+
+////////////
+let displayAPTurnover = () => {
+ let p = document.createElement('p')
+ if (apTurnover > 12.00){
+   let node = document.createTextNode(p14q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (apTurnover <= 12.00 && apTurnover >= 4.00){
+   let node = document.createTextNode(p14q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (apTurnover < 4.00 && apTurnover >= 2.00){
+     let node = document.createTextNode(p14q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (apTurnover < 2.00 && apTurnover >= 1.00){
+   let node = document.createTextNode(p14q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (apTurnover < 1.00){
+   let node = document.createTextNode(p14q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in apTurnover")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayDaysOfPayablesOutstanding = () => {
+ let p = document.createElement('p')
+ if (daysOfPayablesOutstanding > 12.00){
+   let node = document.createTextNode(p15q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfPayablesOutstanding <= 12.00 && daysOfPayablesOutstanding >= 4.00){
+   let node = document.createTextNode(p15q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (daysOfPayablesOutstanding < 4.00 && daysOfPayablesOutstanding >= 2.00){
+     let node = document.createTextNode(p15q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (daysOfPayablesOutstanding < 2.00 && daysOfPayablesOutstanding >= 1.00){
+   let node = document.createTextNode(p15q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (daysOfPayablesOutstanding < 1.00){
+   let node = document.createTextNode(p15q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in daysOfPayablesOutstanding")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayCashConversionCycle = () => {
+ let p = document.createElement('p')
+ if (cashConversionCycle > 60.00){
+   let node = document.createTextNode(p16q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (cashConversionCycle <= 60.00 && cashConversionCycle >= 30.00){
+   let node = document.createTextNode(p16q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (cashConversionCycle < 30.00 && cashConversionCycle >= 10.00){
+     let node = document.createTextNode(p16q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (cashConversionCycle < 10.00 && cashConversionCycle >= 0.00){
+   let node = document.createTextNode(p16q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (cashConversionCycle < 0.00){
+   let node = document.createTextNode(p16q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in cashConversionCycle")
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+}
+
+////////////
+let displayworkingCapitalTurnover = () => {
+ let p = document.createElement('p')
+ if (workingCapitalTurover > 12.00){
+   let node = document.createTextNode(p17q5)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (workingCapitalTurover <= 12.00 && workingCapitalTurover >= 6.00){
+   let node = document.createTextNode(p17q4)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+
+   else if (workingCapitalTurover < 6.00 && workingCapitalTurover >= 1.00){
+     let node = document.createTextNode(p17q3)
+     p.appendChild(node)
+     appendHere.appendChild(p)
+ }
+
+ else if (workingCapitalTurover < 1.00 && workingCapitalTurover >= 0.00){
+   let node = document.createTextNode(p17q2)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else if (workingCapitalTurover < 0.00){
+   let node = document.createTextNode(p17q1)
+   p.appendChild(node)
+   appendHere.appendChild(p)
+ }
+ else{
+   let node = document.createTextNode("Whoops, looks like we encountered a bug in workingCapitalTurover")
    p.appendChild(node)
    appendHere.appendChild(p)
  }
