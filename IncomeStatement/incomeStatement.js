@@ -60,31 +60,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
       console.log(error)
     })
   }
-
-
-//// POST ROUTE
-
-
-
 })
-////////////////////
-// <!-- Default unchecked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-//   <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-// </div>
-//
-// <!-- Default checked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
-//   <label class="custom-control-label" for="defaultChecked">Default checked</label>
-// </div>
-
-
-
-// <form class="form-inline" id="todoInputForm">
-//   <div class="form-group">
-//     <input type="text" class="form-control" id="todoTitle" placeholder="Todo Title ...">
-//   </div>
-//   <button type="submit" class="btn btn-primary">Send</button>
-// </form><br/>

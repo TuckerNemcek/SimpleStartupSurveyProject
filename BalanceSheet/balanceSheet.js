@@ -32,20 +32,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
             questInputInner= document.createElement('input')
             questInputInner.class='form-control'
             questInputInner.id=questions[i].id
-            p.innerText = `${i + 10}. ` + questions[i].questionContents
+            p.innerText = `${i + 16}. ` + questions[i].questionContents
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)
         //  }
        }
+       console.log('this is questionArray ', questionArray)
        storedData = JSON.parse(localStorage.getItem('storedData'))
        storedData2 = []
        console.log('question array is ',questionArray)
        console.log('your storedData is ', storedData)
        let submitButton = document.getElementById('submitButton')
        submitButton.onclick = function(){
-         for (let i = 16; i <= 16; i++) {
+         for (let i = 17; i <= 23; i++) {
            storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value})
+           console.log(document.getElementById(`${i}`))
          }
          axios.post('http://localhost:3000/client_answers/',storedData)
          .then(function(response){
@@ -60,27 +62,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
       console.log(error)
     })
   }
-window.location.href = "../AnalysisPage/analysis.html";
-axios.get('http://localhost:3000/questions/balanceSheet')
-
-////////////////////
-// <!-- Default unchecked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-//   <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-// </div>
-//
-// <!-- Default checked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
-//   <label class="custom-control-label" for="defaultChecked">Default checked</label>
-// </div>
-
-
-
-// <form class="form-inline" id="todoInputForm">
-//   <div class="form-group">
-//     <input type="text" class="form-control" id="todoTitle" placeholder="Todo Title ...">
-//   </div>
-//   <button type="submit" class="btn btn-primary">Send</button>
-// </form><br/>
+})

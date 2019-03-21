@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       questionArray = response.data
       console.log("This your GET request " , questions)
         for (let i = 0; i < questions.length; i++){
-          // if(questions[i].isMultipleChoice){
+        //  if(questions[i].isMultipleChoice){
           //   let p = document.createElement('p')
           //   p.innerText = `${i + 1}. ` + questions[i].questionContents
           //   appendHere.appendChild(p)
@@ -22,9 +22,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
           //     appendHere.appendChild(p)
           //     appendHere.appendChild(choice)
           //   }
-          //
           // }
-         // else{
+  //       else{
             let p = document.createElement('p')
             my_form=document.createElement('FORM');
             questInput =document.createElement('form')
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)
-         // }
+      //    }
        }
     })
     .catch(function (error) {
