@@ -1,4 +1,8 @@
 
+html * {
+font-family: "Lato";
+}
+
 .nav-link{
   font-family: sans-serif;
   color: #444444;
@@ -56,4 +60,13 @@
   color: #FFF;
   background: rgba(58, 133, 191, 0.75);
   border: 2px solid rgba(58, 133, 191, 0.75);
+}
+
+.output {
+font-style: italic;
+}
+
+.header {
+  margin-top: 30px;
+  color: #2098d4;
 }

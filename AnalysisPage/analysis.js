@@ -598,8 +598,9 @@ let p17q5 = `Your Working Capital Turnover is over 12. For every 1 dollar invest
 This is a healthy Working Capital Turnover and will likely please investors.
 
 A word of caution, however, is if your Working Capital Turnover is so high because you are unable or are insolvent to make payments on A/P, which could lead to impending bankruptcy. `
+
 let storedData = JSON.parse(localStorage.getItem('storedData'))
-console.log(storedData)
+console.log('your stored data is ', storedData)
 
 let workingCapital = ((storedData[16].answer)) - ((storedData[17].answer))
 console.log('working capital is ',workingCapital)
@@ -634,13 +635,13 @@ console.log('inventory turnover is', inventoryTurnover)
 let daysOfInventoryOnHand = 365 / inventoryTurnover
 console.log('days of inventory on hand is', daysOfInventoryOnHand)
 
-let arTurnover = (storedData[9].answer - storedData[10].answer) / ()(storedData[19].answer + storedData[19].answer) / 2)
+let arTurnover = (storedData[9].answer - storedData[10].answer) / ((storedData[19].answer + storedData[19].answer) / 2)
 console.log('AR turnover is ', arTurnover)
 
 let daysOfSalesOutstanding = 365 / arTurnover
 console.log('days of sales outstanding is ', daysOfSalesOutstanding)
 
-let apTurnover = (storedData[12].answer + storedData[23].answer - storedData[22].answer) / storedData[21].answer
+let apTurnover = (storedData[12].answer + storedData[23].answer - storedData[22].answer) / ((storedData[20].answer + storedData[21].answer)/2)
 console.log('your AP turnover is ', apTurnover)
 
 let daysOfPayablesOutstanding = 365 / apTurnover
@@ -674,11 +675,39 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 let displayWorkingCapital = () => {
+  let infoHead = document.createElement('h3')
+  infoHead.className = 'header'
+  infoHead.className = 'info'
+  let infoHeadText = document.createTextNode('Introduction to Financial Ratios and Analysis')
+  infoHead.appendChild(infoHeadText)
+  appendHere.appendChild(infoHead)
+
+  let infoBody = document.createElement('p')
+  let infoBodyText = document.createTextNode(`The Ratios introduced in this Simple Financial Health Check are part of
+practical Financial Statement Analysis. There are many different categories of
+Ratios which can be analyzed. This Simple Health Check will focus on
+Liquidity Ratios, Profitability Ratios, Activity Ratios.`)
+  infoBody.appendChild(infoBodyText)
+  appendHere.appendChild(infoBody)
+
   let head = document.createElement('h3')
+  head.className = 'header'
   let headText = document.createTextNode('Working Capital')
   head.appendChild(headText)
   appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`In Accounting speak, Working Capital is Current Assets less Current
+Liabilities. In practical terms, Working Capital represents the Cash and liquid
+Current Assets available to fund your business’s daily operations. On a short
+term basis, your business will demand cash for buying raw materials and
+supporting Accounts Receivable. Positive Working Capital means you have
+more liquid resources available than the demands on those resources.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
   let p = document.createElement('p')
+  p.className ='output'
   if (workingCapital > 50000){
     let node = document.createTextNode(p1q5)
     p.appendChild(node)
@@ -716,10 +745,21 @@ let displayWorkingCapital = () => {
 
 let displayCurrentRatio = () => {
   let head = document.createElement('h3')
+  head.className = 'header'
   let headText = document.createTextNode('Current Ratio')
   head.appendChild(headText)
   appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`The Current Ratio is one of the most common Liquidity Ratios. It is similar to
+Working Capital but rather than an absolute amount the Current Ratio
+divides Current Assets by Current Liabilities to review the proportion of short
+term resources to short term debt.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
   let p = document.createElement('p')
+  p.className ='output'
   if (currentRatio > 2.00){
     let node = document.createTextNode(p2q5)
     p.appendChild(node)
@@ -756,7 +796,22 @@ let displayCurrentRatio = () => {
 ///////////
 
 let displayTotalSales = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Total Sales')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Total Sales is a relatively straightforward measure looking at the Total
+Revenue generated from selling your product or Units X Volume X Unit Price.
+It is important to distinguish Total Sales from Total Revenue, which could
+include Revenue from Investment Gains and not sale of product.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
   let p = document.createElement('p')
+  p.className ='output'
   if (totalSales > 500000){
     let node = document.createTextNode(p3q5)
     p.appendChild(node)
@@ -794,7 +849,26 @@ let displayTotalSales = () => {
 ///////////
 
 let displayGrossMargin = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Gross Margin')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Gross Margin reviews your Total Sales, subtracts any Trade Spend and
+Discounts to arrive at Total Net Revenue, then further subtracts your COGS
+to find Gross Profit. Then dividing Gross Profit by Total Sales relates Gross
+Profit as a percentage of Total Sales, known as your Gross Margin. Gross
+Margin is telling you how many cents your company keeps as Gross Profit for
+every dollar of sales. For example, if your company has a Gross Margin of
+25%, you are retaining 25 cents Gross Profit for every dollar of sales. Gross
+Profit must further cover the expenses of your Company.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
   let p = document.createElement('p')
+    p.className ='output'
   if (grossMargin > .5){
     let node = document.createTextNode(p4q5)
     p.appendChild(node)
@@ -831,7 +905,22 @@ let displayGrossMargin = () => {
 
  ////////////
 let displayNetIncome = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Net Income')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Net Income is commonly referred to as the bottom line, progressing on from
+Total Sales and Gross Profit to subtract selling, general and administrative
+expenses, operating expenses, depreciation, interest, taxes and other
+expenses.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
   let p = document.createElement('p')
+    p.className ='output'
   if (netIncome > 250000){
     let node = document.createTextNode(p5q5)
     p.appendChild(node)
@@ -868,7 +957,28 @@ let displayNetIncome = () => {
 
 ////////////
 let displayNetIncomeMargin = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Net Income Margin')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Net Income Margin is similar to Gross Margin in that it relates a profitability
+measure to Total Sales as a percentage, simply substituting Net Income for
+Gross Profit. Net Income Margin measures for each dollar of sales, how many
+cents make it to the bottom line and are available to investors. It is important
+to remember, however, that Net Income is different than cash, as the Income
+Statement contains many Non-Cash expense items including depreciation
+and amortization. An increasing Net Margin is viewed favorably by Investors,
+while a decreasing Net Margin is less favorable and could result from many
+factors including unhappy customers, rising expenses, or increased
+competition.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (netIncomeMargin > .3){
    let node = document.createTextNode(p6q5)
    p.appendChild(node)
@@ -905,7 +1015,25 @@ let displayNetIncomeMargin = () => {
 
 ////////////
 let displayRevenuePerEmployee = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Revenue Per Employee')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Revenue per Employee is another straightforward ratio which divides your
+Total Sales by the number of Employees at your company. It is a simple but
+important ratio to calculate the average revenue contributed by each
+employee. Revenue per Employee tells you how well your company is
+leveraging its staff. More labor intensive industries will have lower Revenue
+per Employee while low labor intensive industries should expect higher
+Revenue per Employee.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (revenuePerEmployee > 250000){
    let node = document.createTextNode(p7q5)
    p.appendChild(node)
@@ -942,7 +1070,24 @@ let displayRevenuePerEmployee = () => {
 
 ////////////
 let displayRevenuePerClient = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Revenue per Client/Contract')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Revenue per (Customer or Client) is another straightforward ratio which
+divides your Total Sales by your Company’s Total Customers, Clients, or
+Contracts, whichever you have available. Just as Revenue per Employee
+measures how many sales dollars contributed by each employee, Revenue
+per Client or Contract indicates how much Revenue is contributed by each
+client or contract signed.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (revenuePerClient > 250000){
    let node = document.createTextNode(p8q5)
    p.appendChild(node)
@@ -979,7 +1124,25 @@ let displayRevenuePerClient = () => {
 
 ////////////
 let displayInterestCoverage = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Interest Coverage')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Interest Coverage is a Profitability Ratio related to debt. Interest Coverage
+divides EBIT, or your Earnings Before Interest & Taxes, by your Interest
+Expense for the period. This relationship reveals how many times you could
+pay your current Interest Expense from Earnings. A higher Interest Coverage
+ratio indicates a higher margin of safety to meet debt obligations, and a
+more liquid, solvent company which is more likely to weather any difficult
+times.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (interestCoverage > 3.00){
    let node = document.createTextNode(p9q5)
    p.appendChild(node)
@@ -1016,7 +1179,26 @@ let displayInterestCoverage = () => {
 
 ////////////
 let displayInventoryTurnover = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Inventory Turnover')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Inventory Turnover relates Total Cost of Goods Sold to your Average
+Inventory over the period. This comparison reveals how many times the
+Average Inventory Balance is sold. This is also referred to as how many times
+Inventory is “Turned”. Inventory Turnover is telling you how fast your
+company sells its inventory. A low Inventory Turnover Ratio generally
+indicates weaker sales or too high balance of inventory. A higher Inventory
+Turnover Ratio generally indicates stronger sales but could indicate too low
+of an inventory balance and sales are being lost.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (inventoryTurnover > 12.00){
    let node = document.createTextNode(p10q5)
    p.appendChild(node)
@@ -1053,7 +1235,25 @@ let displayInventoryTurnover = () => {
 
 ////////////
 let displayInventoryOnHand = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Days of Inventory on Hand (DOH)')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Days of Inventory Hand (DOH) is a similar measure to Inventory Turnover in
+that they compare COGS to Average Inventory balance. DOH is actually
+inversely related to Inventory Turnover as it divides the time period (usually 1
+year or 365 days) by the Inventory Turnover ratio. This ratio is telling you how
+quickly your company sells through the average inventory held in stock. It
+can also be thought of as the number of days your average inventory will be
+sufficient for sales.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (daysOfInventoryOnHand > 60.00){
    let node = document.createTextNode(p11q5)
    p.appendChild(node)
@@ -1090,7 +1290,25 @@ let displayInventoryOnHand = () => {
 
 ////////////
 let displayARTurnover = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Accounts Receivable (A/R) Turnover')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Accounts Receivable (A/R) Turnover reviews the ability of your company to
+extend credit to its customers and subsequently collect on those debts. It is
+important to remember that your company’s A/R is effectively an interest
+free loan to your customers. As this capital you are loaning out is not interest
+free to you, your company loses money the longer it takes to collect on A/R.
+The A/R Turnover Ratio measures how many times you collect those A/R
+Debts per year.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (arTurnover > 12.00){
    let node = document.createTextNode(p12q5)
    p.appendChild(node)
@@ -1127,7 +1345,22 @@ let displayARTurnover = () => {
 
 ////////////
 let displayDaysofSalesOutstanding = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Days of Sales on Hand (DSO)')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Days of Sales Outstanding (DSO) relates to A/R Turnover as it also analyzes
+the efficiency of your company to extend credit and collect debts from
+customers. DSO measures the number of days to collect payment after the
+sale. The lower the DSO, the faster your company collects payment.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (daysOfSalesOutstanding > 120.00){
    let node = document.createTextNode(p13q5)
    p.appendChild(node)
@@ -1165,7 +1398,30 @@ let displayDaysofSalesOutstanding = () => {
 
 ////////////
 let displayAPTurnover = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Accounts Payable (A/P) Turnover')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Accounts Payable (A/P) Turnover measures how quickly your company pays
+your creditors or suppliers. As your company’s A/P Turnover decreases, it
+indicates your company is paying its suppliers at a slower pace. If you
+recently renegotiated more favorable terms with your suppliers allowing you
+to pay later, than a decreasing A/P Turnover is a positive sign the new policy
+is working. If this is not the case, however, the decreasing A/P Turnover could
+signal financial distress. An increasing A/P Turnover indicates your company
+is paying its creditors faster, which again depends on context. If you are
+emerging from financial distress or generally investing in supplier
+relationships with prompt payment, then this is a good sign. Otherwise it
+may be an indicator your company is beginning to underutilize supplier
+credit.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (apTurnover > 12.00){
    let node = document.createTextNode(p14q5)
    p.appendChild(node)
@@ -1202,7 +1458,26 @@ let displayAPTurnover = () => {
 
 ////////////
 let displayDaysOfPayablesOutstanding = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Days of Payables Outstanding (DPO)')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Days of Payables Outstanding (DPO) calculates the average number of days
+your company requires to pay off its suppliers and creditors. Similar to A/P
+Turnover, DPO measures how long your company holds onto cash. As DPO
+decreases, it indicates you are paying your suppliers at a faster rate. As DPO
+increases, it indicates you are paying slower, which could indicate improved
+cash management or financial distress, depending whether your company is
+slowing payments as a conscience change in policy or because it is unable to
+make timely payments.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (daysOfPayablesOutstanding > 12.00){
    let node = document.createTextNode(p15q5)
    p.appendChild(node)
@@ -1239,7 +1514,25 @@ let displayDaysOfPayablesOutstanding = () => {
 
 ////////////
 let displayCashConversionCycle = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Cash Conversion Cycle (CCC)')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`The Cash Conversion Cycle (CCC) analyzes the combined management of
+Inventory, Accounts Receivable, and Accounts Payable by adding DOH to DSO
+and subtracting DPO. This combined measure reviews the capital tied up in
+operations, production and sales and the benefit received from supplier
+credit, which reduces a company’s net capital necessary for operations. The
+CCC provides the combined view of Current Asset efficiency and Current
+Liability leverage.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (cashConversionCycle > 60.00){
    let node = document.createTextNode(p16q5)
    p.appendChild(node)
@@ -1276,7 +1569,23 @@ let displayCashConversionCycle = () => {
 
 ////////////
 let displayworkingCapitalTurnover = () => {
+  let head = document.createElement('h3')
+  head.className = 'header'
+  let headText = document.createTextNode('Working Capital Turnover')
+  head.appendChild(headText)
+  appendHere.appendChild(head)
+
+  let explain = document.createElement('p')
+  let explainText = document.createTextNode(`Working Capital Turnover measures how efficiently your company leverages
+its Working Capital to drive sales levels. Working Capital represents funds
+tied up in Current Assets to finance operations. By dividing Sales by Working
+Capital, this reveals how many dollars of sales your Company generates for
+each dollar invested in Working Capital.`)
+  explain.appendChild(explainText)
+  appendHere.appendChild(explain)
+
  let p = document.createElement('p')
+   p.className ='output'
  if (workingCapitalTurover > 12.00){
    let node = document.createTextNode(p17q5)
    p.appendChild(node)
