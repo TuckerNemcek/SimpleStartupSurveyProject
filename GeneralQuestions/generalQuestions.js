@@ -2,7 +2,7 @@ let questionArray
 let questions
 document.addEventListener('DOMContentLoaded', () => {
   getgeneralQuestions()
-  localStorage.clear('storedData')
+  localStorage.clear()
   let appendHere = document.getElementById('appendHere')
 
   function getgeneralQuestions() {
@@ -82,40 +82,23 @@ submitButton.onclick = function() {
         answer: document.querySelector('input[name="1009"]:checked').value
       })
 
-ˇ
+
   for (let i = 0; i < storedData.length; i++) {
     if (storedData[i].answer === "") {
       storedData = []
-      return alert(`it appears you forgot to answer question number ${i}. All questions must be complete in order to give you the best analysis`)
+      return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
+    }
+    else if (i >= 4 && isNaN(storedData[i].answer)) {
+      storedData = []
+      return alert(`it appears you did not enter a valid number for question ${i + 1}`)
     }
   }
+
   axios.post('http://localhost:3000/client_answers/', storedData)
     .then(function(response) {
       console.log(response.data, ' save success')
     })
   localStorage.setItem("storedData", JSON.stringify(storedData))
-  //  window.location.href = "../IncomeStatement/incomeStatement.html";
+    window.location.href = "../IncomeStatement/incomeStatement.html";
 
 }
-
-////////////////////
-// <!-- Default unchecked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-//   <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label>
-// </div>
-//
-// <!-- Default checked -->
-// <div class="custom-control custom-radio">
-//   <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" checked>
-//   <label class="custom-control-label" for="defaultChecked">Default checked</label>
-// </div>
-
-
-
-// <form class="form-inline" id="todoInputForm">
-//   <div class="form-group">
-//     <input type="text" class="form-control" id="todoTitle" placeholder="Todo Title ...">
-//   </div>
-//   <button type="submit" class="btn btn-primary">Send</button>
-// </form><br/>

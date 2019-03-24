@@ -11,7 +11,6 @@ Options to increase Current Assets include submitting invoices to your customers
 Options to decrease Current Liabilities include negotiating longer payment cycles with your vendors as well as negotiating discounts for paying quicker. Another option is to switch from Short Term to Long Term debt, to the extent it does not increase your Interest Expense. `
 
 let p1q3 = `Your Working Capital is positive, signifying sufficient liquid assets to fund Current Liabilities.
-
 This will not likely raise a red flag for creditors and indicates a relatively lower probability of needing additional capital to fund daily operations.`
 
 let p1q4 = `Your Working Capital is positive, signifying sufficient liquid assets to fund Current Liabilities.
@@ -602,46 +601,49 @@ A word of caution, however, is if your Working Capital Turnover is so high becau
 let storedData = JSON.parse(localStorage.getItem('storedData'))
 console.log('your stored data is ', storedData)
 
-let workingCapital = ((storedData[15].answer)) - ((storedData[16].answer))
+
+
+
+let workingCapital = ((storedData[16].answer)) - ((storedData[17].answer))
 console.log('working capital is ',workingCapital)
 
-let currentRatio = ((storedData[15].answer)) / ((storedData[16].answer))
+let currentRatio = ((storedData[16].answer)) / ((storedData[17].answer))
 console.log('current ratio is is ',currentRatio)
 
-let totalSales = storedData[8].answer
+let totalSales = storedData[9].answer
 console.log('total sales is ',totalSales)
 
-let grossMargin = (storedData[8].answer - storedData[10].answer - storedData[11].answer) / storedData[8].answer
+let grossMargin = (storedData[9].answer - storedData[11].answer - storedData[12].answer)
 console.log('gross margin is ', grossMargin)
 
-let netIncome = storedData[14].answer
+let netIncome = storedData[15].answer
 console.log('net income is ', netIncome)
 
-let netIncomeMargin = storedData[14].answer / storedData[8].answer
+let netIncomeMargin = netIncome / totalSales
 console.log('net income margin is ', netIncomeMargin)
 
-let revenuePerEmployee = storedData[8].answer / storedData[5].answer
+let revenuePerEmployee = totalSales / storedData[4].answer
 console.log('revenue per employee is ', revenuePerEmployee)
 
-let revenuePerClient = storedData[8].answer / storedData[4].answer
+let revenuePerClient = totalSales / storedData[5].answer
 console.log('revenue per client/contract is ', revenuePerClient)
 
-let interestCoverage = (storedData[8].answer - storedData[10].answer - storedData[11].answer -storedData[12].answer) / storedData[13].answer
+let interestCoverage = (totalSales - storedData[11].answer - storedData[12].answer -storedData[13].answer) / storedData[14].answer
 console.log('interest coeverage is ', interestCoverage)
 
-let inventoryTurnover = storedData[11].answer / ((storedData[22].answer + storedData[21].answer) / 2)
+let inventoryTurnover = storedData[12].answer / ((storedData[22].answer + storedData[23].answer) / 2)
 console.log('inventory turnover is', inventoryTurnover)
 
 let daysOfInventoryOnHand = 365 / inventoryTurnover
 console.log('days of inventory on hand is', daysOfInventoryOnHand)
 
-let arTurnover = (storedData[9].answer - storedData[9].answer) / ((storedData[18].answer + storedData[17].answer) / 2)
+let arTurnover = (storedData[9].answer - storedData[9].answer) / ((storedData[18].answer + storedData[19].answer) / 2)
 console.log('AR turnover is ', arTurnover)
 
 let daysOfSalesOutstanding = 365 / arTurnover
 console.log('days of sales outstanding is ', daysOfSalesOutstanding)
 
-let apTurnover = (storedData[12].answer + storedData[22].answer - storedData[21].answer) / ((storedData[19].answer + storedData[20].answer)/2)
+let apTurnover = (storedData[12].answer + storedData[23].answer - storedData[22].answer) / ((storedData[20].answer + storedData[19].answer)/2)
 console.log('your AP turnover is ', apTurnover)
 
 let daysOfPayablesOutstanding = 365 / apTurnover
@@ -650,7 +652,7 @@ console.log('your days of payables outstanding is ', daysOfPayablesOutstanding)
 let cashConversionCycle = daysOfInventoryOnHand + daysOfSalesOutstanding - daysOfPayablesOutstanding
 console.log('your cash conversion cycle is ', cashConversionCycle)
 
-let workingCapitalTurover = storedData[8].answer / workingCapital
+let workingCapitalTurover = storedData[9].answer / workingCapital
 console.log('your working capital turnover is ', workingCapitalTurover)
 
 
@@ -676,8 +678,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 let displayWorkingCapital = () => {
   let infoHead = document.createElement('h3')
-  infoHead.className = 'header'
-  infoHead.className = 'info'
+  infoHead.className ='headerTop'
+
   let infoHeadText = document.createTextNode('Introduction to Financial Ratios and Analysis')
   infoHead.appendChild(infoHeadText)
   appendHere.appendChild(infoHead)
@@ -687,6 +689,7 @@ let displayWorkingCapital = () => {
 practical Financial Statement Analysis. There are many different categories of
 Ratios which can be analyzed. This Simple Health Check will focus on
 Liquidity Ratios, Profitability Ratios, Activity Ratios.`)
+infoBody.className = 'headerText'
   infoBody.appendChild(infoBodyText)
   appendHere.appendChild(infoBody)
 
@@ -1618,4 +1621,11 @@ each dollar invested in Working Capital.`)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
+}
+
+
+
+let submitButton = document.getElementById('submitButton')
+submitButton.onclick = function(){
+  window.print()
 }

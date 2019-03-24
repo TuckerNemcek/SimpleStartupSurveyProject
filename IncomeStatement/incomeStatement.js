@@ -45,13 +45,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
        let submitButton = document.getElementById('submitButton')
        submitButton.onclick = function(){
          for (let i = 10; i <= 16; i++) {
-           storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value})
+
+           storedData2.push({
+              questionID: i,
+              answer: document.getElementById(`${i}`).value})
+         }
+         // ASK ABOUT REMOVING COMMAS FROM USER INPUT AND NOT USING ALERTS
+
+         // for (let i = 0; i < storedData2.length; i++) {
+         //   if (storedData2[i].answer.includes(',')) {
+         //    storedData2[i].answer = storedData2[i].answer.replace(/,/gi, '')
+         //   }
+         // }
+         for (let i = 0; i < storedData2.length; i++) {
+           if (storedData2[i].answer === "") {
+             storedData2 = []
+             return alert(`it appears you forgot to answer question number ${i + 10}. All questions must be complete in order to give you the best analysis`)
+           }
+           else if (isNaN(storedData2[i].answer)) {
+             storedData2 = []
+             return alert(`it appears you did not enter a valid number for question ${i + 10}`)
+           }
          }
          axios.post('http://localhost:3000/client_answers/',storedData)
          .then(function(response){
            console.log(response.data , ' save success')
          })
          storedData = storedData.concat(storedData2)
+         console.log('your stored data is ', storedData)
          localStorage.setItem("storedData", JSON.stringify(storedData))
          window.location.href = "../BalanceSheet/balanceSheet.html";
     }

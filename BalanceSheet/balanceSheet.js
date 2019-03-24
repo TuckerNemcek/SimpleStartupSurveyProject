@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       questionArray = response.data
       console.log("This your GET request " , questionArray)
         for (let i = 0; i < questions.length; i++){
+          console.log('questions at i is ',questions[i])
           // if(questions[i].isMultipleChoice){
           //   let f = document.createElement('form')
           //   let p = document.createElement('p')
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             questInputInner= document.createElement('input')
             questInputInner.class='form-control'
             questInputInner.id=questions[i].id
-            p.innerText = `${i + 16}. ` + questions[i].questionContents
+            p.innerText = `${i + 17}. ` + questions[i].questionContents
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)
@@ -45,9 +46,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
        console.log('your storedData is ', storedData)
        let submitButton = document.getElementById('submitButton')
        submitButton.onclick = function(){
-         for (let i = 17; i <= 23; i++) {
+         for (let i = 17; i <= 24; i++) {
            storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value})
            console.log(document.getElementById(`${i}`))
+         }
+         for (let i = 0; i < storedData2.length; i++) {
+           if (storedData2[i].answer === "") {
+             storedData2 = []
+             return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis`)
+           }
          }
          axios.post('http://localhost:3000/client_answers/',storedData)
          .then(function(response){
