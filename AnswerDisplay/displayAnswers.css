@@ -1,4 +1,6 @@
-
+html * {
+font-family: "Lato";
+}
 .nav-link{
   font-family: sans-serif;
   color: #444444;
@@ -30,18 +32,12 @@
 }
 
 .about-text{
-  align: center;
+  color: #999999;
   line-height: 2;
   margin-left: 80px;
   float: left;
 }
 
-.container{
-  height: 428.33;
-  width: 428.33;
-  float: right;
-  margin:0;
-}
 
 .email{
   margin-left:120px;
@@ -62,4 +58,20 @@
   color: #FFF;
   background: rgba(58, 133, 191, 0.75);
   border: 2px solid rgba(58, 133, 191, 0.75);
+}
+
+.mc{
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+#submitButton {
+  margin-bottom: 75px;
+}
+
+.headerText{
+  color: #52caf5;
+  text-align: center;
+  margin-top:40px;
+  margin-bottom: 40px;
 }

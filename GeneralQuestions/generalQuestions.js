@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let appendHere = document.getElementById('appendHere')
 
   function getgeneralQuestions() {
-    axios.get('http://localhost:3000/questions/generalQuestions/')
+    axios.get('https://simple-startup-survey-backend.herokuapp.com/questions/generalQuestions')
       .then(function(response) {
         let questions = response.data
         questionArray = response.data
@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
             p.id = questions[i].id
             p.innerText = `${i + 1}. ` + questions[i].questionContents
             let form = document.createElement('form')
-            appendHere.appendChild(p)
+            form.appendChild(p)
+            appendHere.appendChild(form)
 
 
             for (let k = 0; k < questions[i].mcAnswers.length; k++) {
@@ -67,10 +68,12 @@ console.log('your stored data is', storedData)
 //// POST ROUTE
 let submitButton = document.getElementById('submitButton')
 submitButton.onclick = function() {
+
   for (let i = 1; i <= questionArray.length -2; i++) {
       storedData.push({
         questionID: i,
-        answer: document.getElementById(`${i}`).value
+        answer: document.getElementById(`${i}`).value,
+        clientID: document.getElementById(`${3}`).value
       })
     }
       storedData.push({
@@ -83,22 +86,31 @@ submitButton.onclick = function() {
       })
 
 
-  for (let i = 0; i < storedData.length; i++) {
-    if (storedData[i].answer === "") {
-      storedData = []
-      return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
+    // if (storedData[i].answer.includes(",")) {
+    //   storedData[i].answer = storedData[i].answer.replace(/,/g, ' ')
+    //   return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
+    // }
+    for (let i = 0; i < storedData.length; i++){
+      if (storedData[i].answer.includes(',')) {
+       storedData[i].answer = storedData[i].answer.replace(/,/gi, '')
+      }
+      if (storedData[i].answer === "") {
+        storedData = []
+        return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
+      }
+      else if (i >= 4 && isNaN(storedData[i].answer)) {
+        storedData = []
+        return alert(`it appears you did not enter a valid number for question ${i + 1}`)
+      }
+      else if (storedData[i] === null) {
+        storedData = []
+        return alert(`it appears you did not enter a valid number for question ${i + 1}`)
+      }
     }
-    else if (i >= 4 && isNaN(storedData[i].answer)) {
-      storedData = []
-      return alert(`it appears you did not enter a valid number for question ${i + 1}`)
-    }
-  }
 
-  axios.post('http://localhost:3000/client_answers/', storedData)
-    .then(function(response) {
-      console.log(response.data, ' save success')
-    })
-  localStorage.setItem("storedData", JSON.stringify(storedData))
-    window.location.href = "../IncomeStatement/incomeStatement.html";
+
+      localStorage.setItem("storedData", JSON.stringify(storedData))
+      window.location.href = "../IncomeStatement/incomeStatement.html";
+
 
 }

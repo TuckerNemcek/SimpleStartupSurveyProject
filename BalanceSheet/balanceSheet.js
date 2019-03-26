@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   let appendHere = document.getElementById('appendHere')
 
   function getgeneralQuestions(){
-    axios.get('http://localhost:3000/questions/balanceSheet')
+    axios.get('https://simple-startup-survey-backend.herokuapp.com/questions/balanceSheet')
     .then(function (response) {
       let questions = response.data
       questionArray = response.data
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
        let submitButton = document.getElementById('submitButton')
        submitButton.onclick = function(){
          for (let i = 17; i <= 24; i++) {
-           storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value})
+           storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value, clientID: storedData[3]})
            console.log(document.getElementById(`${i}`))
          }
          for (let i = 0; i < storedData2.length; i++) {
@@ -56,13 +56,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
              return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis`)
            }
          }
-         axios.post('http://localhost:3000/client_answers/',storedData)
+         axios.post('https://simple-startup-survey-backend.herokuapp.com/client_answers/',storedData)
          .then(function(response){
            console.log(response.data , ' save success')
+           storedData = storedData.concat(storedData2)
+           localStorage.setItem("storedData", JSON.stringify(storedData))
+           window.location.href = "../AnalysisPage/analysis.html";
          })
-         storedData = storedData.concat(storedData2)
-         localStorage.setItem("storedData", JSON.stringify(storedData))
-         window.location.href = "../AnalysisPage/analysis.html";
     }
   })
     .catch(function (error) {

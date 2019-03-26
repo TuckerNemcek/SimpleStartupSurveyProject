@@ -59,3 +59,22 @@ font-family: "Lato";
   background: rgba(58, 133, 191, 0.75);
   border: 2px solid rgba(58, 133, 191, 0.75);
 }
+
+#submitButton {
+  margin-bottom: 75px;
+}
+
+.headerText{
+  font-family: "Lato: 100 , 400";
+  color: #52caf5;
+  text-align: center;
+  margin-top:40px;
+  margin-bottom: 40px;
+}
+
+.progBar {
+  color: white;
+  font-size: large;
+  margin-top:20px;
+  margin-bottom:50px;
+}

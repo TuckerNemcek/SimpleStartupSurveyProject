@@ -64,6 +64,7 @@ font-family: "Lato";
 
 .output {
 font-style: italic;
+color: #E57582;
 }
 
 .header {
@@ -81,4 +82,15 @@ font-style: italic;
 .headerText{
   text-align: center;
   margin-bottom: 40px;
+}
+
+.top-explanation {
+  margin-top: 100px;
+}
+
+.progBar {
+  color: white;
+  font-size: large;
+  margin-top:70px;
+  margin-bottom:50px;
 }

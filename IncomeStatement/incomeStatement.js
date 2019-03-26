@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   let appendHere = document.getElementById('appendHere')
 
   function getgeneralQuestions(){
-    axios.get('http://localhost:3000/questions/incomeStatement')
+    axios.get('https://simple-startup-survey-backend.herokuapp.com/questions/incomeStatement')
     .then(function (response) {
       let questions = response.data
       questionArray = response.data
@@ -48,16 +48,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
            storedData2.push({
               questionID: i,
-              answer: document.getElementById(`${i}`).value})
+              answer: document.getElementById(`${i}`).value,
+              clientID: storedData[3],
          }
          // ASK ABOUT REMOVING COMMAS FROM USER INPUT AND NOT USING ALERTS
 
-         // for (let i = 0; i < storedData2.length; i++) {
-         //   if (storedData2[i].answer.includes(',')) {
-         //    storedData2[i].answer = storedData2[i].answer.replace(/,/gi, '')
-         //   }
-         // }
          for (let i = 0; i < storedData2.length; i++) {
+           if (storedData2[i].answer.includes(',')) {
+            storedData2[i].answer = storedData2[i].answer.replace(/,/gi, '')
+           }
+         }
+         for (let i = 0; i < storedData2.length; i++) {
+           if (storedData2[i].answer.includes(",")) {
+             storedData2[i].answer = storedData[i].answer.replace(/,/g, ' ')
+             return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
+           }
            if (storedData2[i].answer === "") {
              storedData2 = []
              return alert(`it appears you forgot to answer question number ${i + 10}. All questions must be complete in order to give you the best analysis`)
@@ -67,14 +72,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
              return alert(`it appears you did not enter a valid number for question ${i + 10}`)
            }
          }
-         axios.post('http://localhost:3000/client_answers/',storedData)
-         .then(function(response){
+
            console.log(response.data , ' save success')
-         })
-         storedData = storedData.concat(storedData2)
-         console.log('your stored data is ', storedData)
-         localStorage.setItem("storedData", JSON.stringify(storedData))
-         window.location.href = "../BalanceSheet/balanceSheet.html";
+           storedData = storedData.concat(storedData2)
+           console.log('your stored data is ', storedData)
+           localStorage.setItem("storedData", JSON.stringify(storedData))
+           window.location.href = "../BalanceSheet/balanceSheet.html";
     }
   })
     .catch(function (error) {

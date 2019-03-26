@@ -1,7 +1,7 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="incomeStatement.css">
+    <link rel="stylesheet" type="text/css" href="displayAnswers.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
 
     <meta charset="utf-8">
@@ -36,20 +36,16 @@
     <!--///// end HEADER //// -->
 
     <div class ='container '>
-      <div class= 'headerText'>
-        <h1>Income Statement</h1>
+      <div class ='headerText'>
+        <h1 class='header '>Saved Answers</h1>
       </div>
-      <div class="progress position-relative progBar" style="height: 30px">
-        <div class="progress-bar" role="progressbar" style="width:33%; background-color:#52caf5 !important;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-        <small class="justify-content-center d-flex position-absolute w-100">33% complete</small>
-    </div>
     </div>
 
   <div class='container'>
     <div class = 'panel panel-primary'>
       <div class ='panel-heading'></div>
       <div class = 'panel-body' id='appendHere'>
-        <div class ="panel-body" id='generalQuestionsTest'></div>
+        <div class ="panel-body" id='displayAnswersTest'></div>
       </div>
       <div>
         <button type="submit" id='submitButton' class="btn btn-primary">Submit</button>
@@ -59,6 +55,6 @@
   </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="incomeStatement.js"></script>
+    <script src="displayAnswers.js"></script>
   </body>
 </html>
