@@ -36,13 +36,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)
-        //  }
-       }
+          }
+       })
        storedData = JSON.parse(localStorage.getItem('storedData'))
        storedData2 = []
        console.log('question array is ',questionArray)
        console.log('your storedData is ', storedData)
        let submitButton = document.getElementById('submitButton')
+     }
+   })
        submitButton.onclick = function(){
          for (let i = 10; i <= 16; i++) {
 
@@ -50,9 +52,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
               questionID: i,
               answer: document.getElementById(`${i}`).value,
               clientID: storedData[3],
-         }
-         // ASK ABOUT REMOVING COMMAS FROM USER INPUT AND NOT USING ALERTS
-
+         })
+       }
          for (let i = 0; i < storedData2.length; i++) {
            if (storedData2[i].answer.includes(',')) {
             storedData2[i].answer = storedData2[i].answer.replace(/,/gi, '')
@@ -61,7 +62,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
          for (let i = 0; i < storedData2.length; i++) {
            if (storedData2[i].answer.includes(",")) {
              storedData2[i].answer = storedData[i].answer.replace(/,/g, ' ')
-             return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
            }
            if (storedData2[i].answer === "") {
              storedData2 = []
@@ -73,15 +73,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
            }
          }
 
-           console.log(response.data , ' save success')
            storedData = storedData.concat(storedData2)
            console.log('your stored data is ', storedData)
            localStorage.setItem("storedData", JSON.stringify(storedData))
            window.location.href = "../BalanceSheet/balanceSheet.html";
     }
-  })
-    .catch(function (error) {
-      console.log(error)
-    })
-  }
-})

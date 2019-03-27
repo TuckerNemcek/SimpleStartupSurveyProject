@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       questionArray = response.data
       console.log("This your GET request " , questionArray)
         for (let i = 0; i < questions.length; i++){
-          console.log('questions at i is ',questions[i])
+          // console.log('questions at i is ',questions[i])
           // if(questions[i].isMultipleChoice){
           //   let f = document.createElement('form')
           //   let p = document.createElement('p')
@@ -45,25 +45,51 @@ document.addEventListener('DOMContentLoaded', ()=>{
        console.log('question array is ',questionArray)
        console.log('your storedData is ', storedData)
        let submitButton = document.getElementById('submitButton')
-       submitButton.onclick = function(){
+       submitButton.addEventListener("click", () => {
          for (let i = 17; i <= 24; i++) {
            storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value, clientID: storedData[3]})
-           console.log(document.getElementById(`${i}`))
+           // console.log(document.getElementById(`${i}`))
          }
          for (let i = 0; i < storedData2.length; i++) {
+           if (storedData2[i].answer.includes(",")) {
+             storedData2[i].answer = storedData[i].answer.replace(/,/g, ' ')
+           }
            if (storedData2[i].answer === "") {
              storedData2 = []
-             return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis`)
+             return alert(`it appears you forgot to answer question number ${i + 17}. All questions must be complete in order to give you the best analysis`)
+           }
+           else if (isNaN(storedData2[i].answer)) {
+             storedData2 = []
+             return alert(`it appears you did not enter a valid number for question ${i + 10}`)
            }
          }
-         axios.post('https://simple-startup-survey-backend.herokuapp.com/client_answers/',storedData)
+         axios('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
          .then(function(response){
            console.log(response.data , ' save success')
            storedData = storedData.concat(storedData2)
            localStorage.setItem("storedData", JSON.stringify(storedData))
            window.location.href = "../AnalysisPage/analysis.html";
-         })
-    }
+         }).catch(err => console.log(err))
+       })
+    //    submitButton.onclick = function(){
+    //      for (let i = 17; i <= 24; i++) {
+    //        storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value, clientID: storedData[3]})
+    //        // console.log(document.getElementById(`${i}`))
+    //      }
+    //      for (let i = 0; i < storedData2.length; i++) {
+    //        if (storedData2[i].answer === "") {
+    //          storedData2 = []
+    //          return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis`)
+    //        }
+    //      }
+    //      axios('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
+    //      .then(function(response){
+    //        console.log(response.data , ' save success')
+    //        storedData = storedData.concat(storedData2)
+    //        localStorage.setItem("storedData", JSON.stringify(storedData))
+    //        window.location.href = "../AnalysisPage/analysis.html";
+    //      }).catch(err => console.log(err))
+    // }
   })
     .catch(function (error) {
       console.log(error)
