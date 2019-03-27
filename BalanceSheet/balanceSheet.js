@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
            // console.log(document.getElementById(`${i}`))
          }
          for (let i = 0; i < storedData2.length; i++) {
-           if (storedData2[i].answer.includes(",")) {
-             storedData2[i].answer = storedData[i].answer.replace(/,/g, ' ')
+           if (storedData2[i].answer.includes(',')) {
+            storedData2[i].answer = storedData2[i].answer.replace(/,/gi, '')
            }
            if (storedData2[i].answer === "") {
              storedData2 = []
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
            }
            else if (isNaN(storedData2[i].answer)) {
              storedData2 = []
-             return alert(`it appears you did not enter a valid number for question ${i + 10}`)
+             return alert(`it appears you did not enter a valid number for question ${i + 17}`)
            }
          }
          axios('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
