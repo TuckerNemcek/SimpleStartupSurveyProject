@@ -69,12 +69,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
            }
          }
          storedData = storedData.concat(storedData2)
-         axios.post('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
+         axios.post('https://simple-startup-survey-backend.herokuapp.com/client_answers', {crossDomain:true}, storedData,)
          .then(function(response){
            console.log(response.data , ' save success')
            localStorage.setItem("storedData", JSON.stringify(storedData))
            window.location.href = "../AnalysisPage/analysis.html";
-         }).catch(err => console.log(err))
+         }).catch()
        })
     //    submitButton.onclick = function(){
     //      for (let i = 17; i <= 24; i++) {
