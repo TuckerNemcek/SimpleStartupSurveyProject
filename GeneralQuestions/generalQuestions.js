@@ -74,7 +74,7 @@ submitButton.onclick = function() {
       storedData.push({
         questionID: i,
         answer: document.getElementById(`${i}`).value,
-        clientID: document.getElementById(`${3}`).value
+        email_address: document.getElementById(`${3}`).value
       })
     }
       storedData.push({
@@ -97,15 +97,15 @@ submitButton.onclick = function() {
       }
       if (storedData[i].answer === "") {
         storedData = []
-        return alert(`it appears you forgot to answer question number ${i + 17}. All questions must be complete in order to give you the best analysis.`)
+        return alert(`it appears you forgot to answer question number ${i + 1}. All questions must be complete in order to give you the best analysis.`)
       }
       else if (i >= 4 && isNaN(storedData[i].answer)) {
         storedData = []
-        return alert(`it appears you did not enter a valid number for question ${i + 17}`)
+        return alert(`it appears you did not enter a valid number for question ${i + 1}`)
       }
       else if (storedData[i] === null) {
         storedData = []
-        return alert(`it appears you did not enter a valid number for question ${i + 17}`)
+        return alert(`it appears you did not enter a valid number for question ${i + 1}`)
       }
     }
 

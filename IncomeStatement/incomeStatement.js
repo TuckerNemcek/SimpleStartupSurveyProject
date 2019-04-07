@@ -30,12 +30,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             questInput.class='form-inline'
 
             questInputInner= document.createElement('input')
+            let span = document.createElement('span')
+            span.innerHTML = "$"
             questInputInner.class='form-control'
             questInputInner.id=questions[i].id
             p.innerText = `${i + 10}. ` + questions[i].questionContents
+            span.appendChild(questInputInner)
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
-            questInput.appendChild(questInputInner)
+            questInput.appendChild(span)
           }
        })
        storedData = JSON.parse(localStorage.getItem('storedData'))
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
            storedData2.push({
               questionID: i,
               answer: document.getElementById(`${i}`).value,
-              clientID: storedData[3],
+              email_address: storedData[3].answer,
          })
        }
          for (let i = 0; i < storedData2.length; i++) {

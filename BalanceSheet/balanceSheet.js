@@ -31,12 +31,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
             questInput.class='form-inline'
 
             questInputInner= document.createElement('input')
+            let span = document.createElement('span')
+            span.innerHTML = "$"
             questInputInner.class='form-control'
             questInputInner.id=questions[i].id
             p.innerText = `${i + 17}. ` + questions[i].questionContents
+            span.appendChild(questInputInner)
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
-            questInput.appendChild(questInputInner)
+            questInput.appendChild(span)
         //  }
        }
        console.log('this is questionArray ', questionArray)
@@ -47,7 +50,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
        let submitButton = document.getElementById('submitButton')
        submitButton.addEventListener("click", () => {
          for (let i = 17; i <= 24; i++) {
-           storedData2.push({ questionID: i , answer: document.getElementById(`${i}`).value, clientID: storedData[3]})
+           storedData2.push({ questionID: i ,
+              answer: document.getElementById(`${i}`).value,
+               email_address: storedData[3].answer})
            // console.log(document.getElementById(`${i}`))
          }
          for (let i = 0; i < storedData2.length; i++) {
@@ -63,10 +68,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
              return alert(`it appears you did not enter a valid number for question ${i + 17}`)
            }
          }
-         axios('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
+         storedData = storedData.concat(storedData2)
+         axios.post('https://simple-startup-survey-backend.herokuapp.com/client_answers',storedData, {crossDomain:true})
          .then(function(response){
            console.log(response.data , ' save success')
-           storedData = storedData.concat(storedData2)
            localStorage.setItem("storedData", JSON.stringify(storedData))
            window.location.href = "../AnalysisPage/analysis.html";
          }).catch(err => console.log(err))

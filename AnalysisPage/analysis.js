@@ -622,10 +622,10 @@ console.log('net income is ', netIncome)
 let netIncomeMargin = netIncome / totalSales
 console.log('net income margin is ', netIncomeMargin)
 
-let revenuePerEmployee = totalSales / storedData[4].answer
+let revenuePerEmployee = storedData[9].answer / storedData[4].answer
 console.log('revenue per employee is ', revenuePerEmployee)
 
-let revenuePerClient = totalSales / storedData[5].answer
+let revenuePerClient = storedData[9].answer / storedData[5].answer
 console.log('revenue per client/contract is ', revenuePerClient)
 
 let interestCoverage = (totalSales - storedData[11].answer - storedData[12].answer -storedData[13].answer) / storedData[14].answer
@@ -1059,7 +1059,7 @@ Revenue per Employee.`)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
- else if (revenuePerEmployee < -1000){
+ else if (revenuePerEmployee < 1000){
    let node = document.createTextNode(p7q1)
    p.appendChild(node)
    appendHere.appendChild(p)
@@ -1113,7 +1113,7 @@ client or contract signed.`)
    p.appendChild(node)
    appendHere.appendChild(p)
  }
- else if (revenuePerClient < -1000){
+ else if (revenuePerClient < 1000){
    let node = document.createTextNode(p8q1)
    p.appendChild(node)
    appendHere.appendChild(p)

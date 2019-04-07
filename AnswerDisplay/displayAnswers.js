@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questInputInner = document.createElement('input')
             questInputInner.class = 'form-control'
             questInputInner.id = answers[i].id
-            p.innerText = `${i + 1}. ` + answers[i].answer
+            p.innerText = `${i + 1}. ` + answers[i].email_address, answers[i].answer,
             appendHere.appendChild(p)
             appendHere.appendChild(questInput)
             questInput.appendChild(questInputInner)

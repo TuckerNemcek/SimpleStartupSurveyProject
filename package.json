@@ -8,6 +8,7 @@
   },
   "scripts": {
    "start": "lite-server"
+   
   },
   "keywords": [],
   "author": "",
